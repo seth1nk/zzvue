@@ -18,7 +18,7 @@ const routes = [
   { path: '/login', component: LoginPage },    
   { path: '/register', component: RegisterPage }, 
   { path: '/view-jewelry/:id', component: ViewJewelry },
-  { path: '/view-orders/:id', component: ViewOrders },
+  { path: '/view-order/:id', component: ViewOrders },
 ];
 
 const router = createRouter({
