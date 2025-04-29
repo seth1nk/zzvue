@@ -39,7 +39,7 @@
             password: this.password,
           });
 
-          const response = await fetch('http://localhost:3000/auth/register', {
+          const response = await fetch('https://nodejs-production-0586.up.railway.app/auth/register', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({

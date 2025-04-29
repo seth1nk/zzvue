@@ -35,7 +35,7 @@ export default {
       order: null,
       loading: true,
       errorMessage: null,
-      backendUrl: 'http://localhost:3000',
+      backendUrl: 'https://nodejs-production-0586.up.railway.app',
     };
   },
   async created() {
