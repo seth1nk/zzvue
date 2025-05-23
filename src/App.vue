@@ -19,13 +19,13 @@
         <li><router-link to="/" class="button">Главная</router-link></li>
         <li><router-link to="/about" class="button">О нас</router-link></li>
         <li><router-link to="/contact" class="button">Контакты</router-link></li>
-        <li v-if="isAuthenticated"><router-link to="/jewelry" class="button">Ювелирка</router-link></li>
-        <li v-if="isAuthenticated"><router-link to="/orders" class="button">Заказы</router-link></li>
+        <li v-if="isAuthenticated"><router-link to="/smartwatches" class="button">Смарт-часы</router-link></li>
+        <li v-if="isAuthenticated"><router-link to="/clients" class="button">Клиенты</router-link></li>
         <li v-if="!isAuthenticated"><router-link to="/login" class="button">Войти</router-link></li>
         <li v-if="!isAuthenticated"><router-link to="/register" class="button">Зарегистрироваться</router-link></li>
         <li v-if="isAuthenticated" class="welcome-message"><span>Добро пожаловать, {{ username }}</span></li>
         <li v-if="isAuthenticated"><button @click="logout" class="button">Выйти</button></li>
-        <li v-if="isAuthenticated && role === 'admin'"><a href="https://nodejs-production-0586.up.railway.app" class="admin-button">Админ-панель</a></li>
+        <li v-if="isAuthenticated && role === 'admin'"><a href="http://localhost:3000" class="admin-button">Админ-панель</a></li>
       </ul>
     </nav>
   </aside>
@@ -46,7 +46,7 @@ export default {
   methods: {
     async checkAuth() {
       try {
-        const response = await fetch('https://nodejs-production-0586.up.railway.app/auth/check', {
+        const response = await fetch('http://localhost:3000/auth/check', {
           method: 'GET',
           credentials: 'include',
         });
@@ -71,7 +71,7 @@ export default {
     },
     async logout() {
       try {
-        const response = await fetch('https://nodejs-production-0586.up.railway.app/auth/logout', {
+        const response = await fetch('http://localhost:3000/auth/logout', {
           method: 'GET',
           credentials: 'include',
         });
@@ -103,9 +103,9 @@ export default {
   top: 50%;
   right: 0;
   transform: translateY(-50%);
-  background: rgba(26, 26, 26, 0.9); /* Полупрозрачный черный фон */
+  background: rgba(26, 32, 44, 0.95); /* Тёмный прозрачный фон */
   backdrop-filter: blur(10px);
-  border-left: 1px solid rgba(212, 175, 55, 0.3); /* Золотая граница */
+  border-left: 1px solid rgba(255, 255, 255, 0.3); /* Белая граница */
   padding: 20px;
   display: flex;
   flex-direction: column;
@@ -122,7 +122,7 @@ export default {
 }
 
 .logo {
-  max-width: 100px; /* Увеличенный размер логотипа */
+  max-width: 100px;
   height: auto;
   border-radius: 5px;
   transition: transform 0.3s ease;
@@ -146,10 +146,10 @@ export default {
 /* Общие стили для кнопок навигации */
 .button {
   display: block;
-  width: 180px; /* Фиксированная ширина для одинакового размера */
+  width: 180px;
   padding: 10px 15px;
-  background: #d4af37; /* Золотой фон */
-  color: #1a1a1a; /* Черный текст */
+  background: #ff6b6b; /* Яркий розовый фон */
+  color: #ffffff; /* Белый текст */
   text-decoration: none;
   border-radius: 8px;
   font-weight: bold;
@@ -159,32 +159,18 @@ export default {
 }
 
 .button:hover {
-  background: #b8860b; /* Темный золотой */
+  background: #4b0082; /* Тёмный фиолетовый при ховере */
   transform: translateY(-2px);
   box-shadow: 0 6px 15px rgba(0, 0, 0, 0.3);
-}
-
-/* Специфичные стили для кнопок Ювелирка и Заказы */
-.jewelry-button {
-  background: #b8860b; /* Темный золотой фон */
-}
-
-.jewelry-button:hover {
-  background: #ffd700; /* Яркий золотой при ховере */
-}
-
-/* Кнопка Выйти */
-.logout-button {
-  width: auto; /* Убираем фиксированную ширину */
 }
 
 /* Кнопка админ-панели */
 .admin-button {
   display: block;
-  width: auto; /* Убираем фиксированную ширину */
+  width: auto;
   padding: 10px 15px;
-  background: linear-gradient(135deg, #ffd700, #b8860b); /* Золотой градиент */
-  color: #1a1a1a;
+  background: linear-gradient(135deg, #ff6b6b, #4b0082); /* Градиент розовый-фиолетовый */
+  color: #ffffff;
   text-decoration: none;
   border-radius: 8px;
   font-weight: bold;
@@ -195,7 +181,7 @@ export default {
 }
 
 .admin-button:hover {
-  background: linear-gradient(135deg, #b8860b, #ffd700);
+  background: linear-gradient(135deg, #4b0082, #ff6b6b);
   transform: translateY(-2px);
   box-shadow: 0 6px 15px rgba(0, 0, 0, 0.3);
 }
@@ -203,13 +189,13 @@ export default {
 /* Приветственное сообщение */
 .welcome-message span {
   display: block;
-  width: auto; /* Убираем фиксированную ширину */
+  width: auto;
   padding: 10px 15px;
   font-size: 16px;
-  color: #d4af37; /* Золотой текст */
+  color: #ffffff; /* Белый текст */
   font-weight: bold;
   text-align: center;
-  background: rgba(212, 175, 55, 0.2); /* Полупрозрачный золотой фон */
+  background: rgba(255, 255, 255, 0.2); /* Полупрозрачный белый фон */
   border-radius: 8px;
 }
 
@@ -217,7 +203,7 @@ export default {
 @media (max-width: 768px) {
   .right-panel {
     padding: 15px;
-    width: 160px; /* Уменьшаем ширину панели */
+    width: 160px;
   }
 
   .logo {
@@ -225,13 +211,12 @@ export default {
   }
 
   .button {
-    width: 140px; /* Уменьшаем ширину кнопок */
+    width: 140px;
     padding: 8px 10px;
     font-size: 0.9rem;
   }
 
   .admin-button,
-  .logout-button,
   .welcome-message span {
     padding: 8px 10px;
     font-size: 0.9rem;

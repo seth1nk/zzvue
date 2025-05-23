@@ -1,64 +1,19 @@
 <template>
-  <main class="container fade-in">
-    <h1 class="page-title">Контакты</h1>
-    <div class="row employees-row mt-5">
-      <div class="col-md-4 employee-card" style="transform: rotate(-2deg);">
-        <div class="card">
-          <img src="/images/11.jpeg" class="card-img-top" alt="Елена Смирнова">
-          <div class="card-body">
-            <h5 class="card-title">Елена Смирнова</h5>
-            <p class="card-text"><strong>Должность:</strong> Директор магазина</p>
-            <p class="card-text"><strong>Стаж:</strong> 10 лет</p>
-          </div>
-        </div>
-      </div>
-      <div class="col-md-4 employee-card" style="transform: rotate(1deg);">
-        <div class="card">
-          <img src="/images/22.jpg" class="card-img-top" alt="Софья Волкова">
-          <div class="card-body">
-            <h5 class="card-title">Софья Волкова</h5>
-            <p class="card-text"><strong>Должность:</strong> Ювелир-дизайнер</p>
-            <p class="card-text"><strong>Стаж:</strong> 8 лет</p>
-          </div>
-        </div>
-      </div>
-      <div class="col-md-4 employee-card" style="transform: rotate(-1deg);">
-        <div class="card">
-          <img src="/images/33.jpg" class="card-img-top" alt="Ольга Николаева">
-          <div class="card-body">
-            <h5 class="card-title">Ольга Николаева</h5>
-            <p class="card-text"><strong>Должность:</strong> Консультант по драгоценным камням</p>
-            <p class="card-text"><strong>Стаж:</strong> 3 года</p>
-          </div>
-        </div>
-      </div>
-      <div class="col-md-4 employee-card" style="transform: rotate(2deg); margin-top: 20px;">
-        <div class="card">
-          <img src="/images/44.jpeg" class="card-img-top" alt="Виктория Лебедева">
-          <div class="card-body">
-            <h5 class="card-title">Виктория Лебедева</h5>
-            <p class="card-text"><strong>Должность:</strong> Администратор салона</p>
-            <p class="card-text"><strong>Стаж:</strong> 6 лет</p>
-          </div>
-        </div>
-      </div>
-      <div class="col-md-4 employee-card" style="transform: rotate(-1deg); margin-top: 30px;">
-        <div class="card">
-          <img src="/images/55.jpg" class="card-img-top" alt="Игорь Соколов">
-          <div class="card-body">
-            <h5 class="card-title">Игорь Соколов</h5>
-            <p class="card-text"><strong>Должность:</strong> Специалист по часовым механизмам</p>
-            <p class="card-text"><strong>Стаж:</strong> 7 лет</p>
-          </div>
-        </div>
-      </div>
-      <div class="col-md-4 employee-card" style="transform: rotate(1deg); margin-top: 40px;">
-        <div class="card">
-          <img src="/images/66.jpeg" class="card-img-top" alt="Дарья Петрова">
-          <div class="card-body">
-            <h5 class="card-title">Дарья Петрова</h5>
-            <p class="card-text"><strong>Должность:</strong> Менеджер по продажам</p>
-            <p class="card-text"><strong>Стаж:</strong> 4 года</p>
+  <main class="fade-in">
+    <div class="container">
+      <h1 class="page-title">Знакомьтесь с нашей командой</h1>
+      <p class="fs-5 text-center mb-10">Профессионалы, которые делают ваши покупки комфортными</p>
+
+      <!-- Первый ряд сотрудников -->
+      <div class="employees-row">
+        <div class="employee-card" v-for="(employee, index) in employees" :key="index" :class="{ 'fade-in': true }" :style="{ animationDelay: index * 0.2 + 's' }">
+          <div class="card">
+            <img :src="employee.image" :alt="employee.name" class="card-img-top">
+            <div class="card-body">
+              <h3 class="card-title">{{ employee.name }}</h3>
+              <p class="card-text"><strong>{{ employee.role }}</strong></p>
+              <p class="card-text">{{ employee.description }}</p>
+            </div>
           </div>
         </div>
       </div>
@@ -69,23 +24,126 @@
 <script>
 export default {
   name: 'ContactPage',
-};
+  data() {
+    return {
+      employees: [
+        {
+          name: 'Иванов Иван',
+          role: 'Генеральный директор',
+          description: 'Опыт работы 15 лет. Специалист в области управления и стратегического планирования.',
+          image: '/images/11.jpg'
+        },
+        {
+          name: 'Петрова Анна',
+          role: 'Менеджер по продажам',
+          description: 'Поможет подобрать идеальные часы под ваш стиль жизни. Работает с клиентами 8 лет.',
+          image: '/images/33.jpg'
+        },
+        {
+          name: 'Сидоров Дмитрий',
+          role: 'Технический специалист',
+          description: 'Эксперт по техническим характеристикам. Ответит на любые вопросы о функционале.',
+          image: '/images/22.png'
+        },
+        {
+          name: 'Кузнецова Елена',
+          role: 'Маркетолог',
+          description: 'Создает уникальные акции и предложения. Опыт в digital-маркетинге 7 лет.',
+          image: '/images/44.jpg'
+        },
+        {
+          name: 'Глебов Алексей',
+          role: 'Специалист по гарантии',
+          description: 'Решает любые вопросы по гарантийному обслуживанию. Работает в компании 6 лет.',
+          image: '/images/55.png'
+        },
+        {
+          name: 'Смирнова Ольга',
+          role: 'Клиентский менеджер',
+          description: 'Поможет с оформлением заказа и доставкой. Всегда на связи с клиентами.',
+          image: '/images/66.png'
+        }
+      ]
+    };
+  },
+  mounted() {
+    this.$el.querySelectorAll('.fade-in').forEach((el, index) => {
+      setTimeout(() => {
+        el.style.opacity = '1';
+        el.style.transform = 'translateY(0)';
+      }, index * 200);
+    });
+  }
+}
 </script>
 
 <style scoped>
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  font-size: 14px;
+  position: relative;
+  min-height: 100%;
+}
+
+@media (min-width: 768px) {
+  html {
+    font-size: 16px;
+  }
+}
+
+body {
+  font-family: 'Roboto Mono', monospace;
+  background: linear-gradient(135deg, #e0c3fc, #8ec5fc);
+  color: #ffffff;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 60px;
+}
+
 main {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin-top: 40px;
+  margin-bottom: 120px;
+}
+
+.container {
   max-width: 1200px;
-  margin: 0 auto;
-  text-align: left;
+  padding: 20px;
+  background: rgba(26, 32, 44, 0.95);
+  backdrop-filter: blur(10px);
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
 }
 
 .page-title {
-  font-size: 2.5rem;
-  margin-bottom: 20px;
   text-align: center;
+  font-size: 2rem;
+  font-weight: bold;
+  margin-bottom: 20px;
+  color: #ffffff;
+}
+
+.employees-row {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 20px;
 }
 
 .employee-card {
+  margin-bottom: 20px;
+  text-align: center;
+  max-width: 250px;
   transition: transform 0.3s ease;
 }
 
@@ -94,18 +152,24 @@ main {
 }
 
 .card {
+  background: rgba(26, 32, 44, 0.3);
+  border-radius: 10px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-  border-radius: 8px;
   overflow: hidden;
-  background-color: white;
-  max-width: 300px;
-  margin: 0 auto;
 }
 
 .card-img-top {
-  width: 100%;
-  height: auto;
-  border-bottom: 2px solid #ddd;
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  border: 3px solid #ffffff;
+  margin: 15px auto;
+  object-fit: cover;
+}
+
+.card-title,
+.card-text {
+  color: #ffffff;
 }
 
 .card-body {
@@ -120,15 +184,47 @@ main {
 
 .card-text strong {
   font-weight: bold;
-  color: #333;
+  color: #ffffff;
+}
+
+p.fs-5 {
+  color: #ffffff;
+  font-size: 1.25rem;
 }
 
 .fade-in {
-  animation: fadeIn 1s ease-in;
+  opacity: 0;
+  transform: translateY(20px);
+  animation: fadeIn 0.8s ease-in-out forwards;
 }
 
 @keyframes fadeIn {
-  0% { opacity: 0; }
-  100% { opacity: 1; }
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media (max-width: 768px) {
+  .container {
+    padding: 15px;
+  }
+
+  .page-title {
+    font-size: 1.5rem;
+  }
+
+  .employee-card {
+    max-width: 200px;
+  }
+
+  .card-img-top {
+    width: 100px;
+    height: 100px;
+  }
 }
 </style>

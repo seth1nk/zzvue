@@ -2,23 +2,23 @@ import { createRouter, createWebHistory } from 'vue-router';
 import HomePage from './components/HomePage.vue';
 import AboutPage from './components/AboutPage.vue';
 import ContactPage from './components/ContactPage.vue';
-import JewelryList from './components/JewelryList.vue';
-import OrdersList from './components/OrdersList.vue';
+import ClientList from './components/ClientList.vue';
+import SmartwatchList from './components/SmartwatchList.vue';
 import LoginPage from './components/LoginPage.vue';
 import RegisterPage from './components/RegisterPage.vue';
-import ViewJewelry from './components/ViewJewelry.vue';
-import ViewOrders from './components/ViewOrders.vue';
+import ViewClient from './components/ViewClient.vue';
+import ViewSmartwatch from './components/ViewSmartwatch.vue';
 
 const routes = [
   { path: '/', component: HomePage },          
   { path: '/about', component: AboutPage },    
   { path: '/contact', component: ContactPage },
-  { path: '/jewelry', component: JewelryList },
-  { path: '/orders', component: OrdersList },
+  { path: '/clients', component: ClientList },
+  { path: '/smartwatches', component: SmartwatchList },
   { path: '/login', component: LoginPage },    
   { path: '/register', component: RegisterPage }, 
-  { path: '/view-jewelry/:id', component: ViewJewelry },
-  { path: '/view-order/:id', component: ViewOrders },
+  { path: '/view-client/:id', component: ViewClient },
+  { path: '/view-smartwatch/:id', component: ViewSmartwatch },
 ];
 
 const router = createRouter({

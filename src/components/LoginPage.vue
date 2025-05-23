@@ -15,7 +15,6 @@
     </form>
   </div>
 </template>
-
 <script>
 export default {
   data() {
@@ -32,10 +31,10 @@ export default {
           email: this.email,
           password: this.password,
         });
-        const response = await fetch('https://nodejs-production-0586.up.railway.app/auth/login', {
+        const response = await fetch('http://localhost:3000/auth/login', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
-          credentials: 'include', // Для отправки куки
+          credentials: 'include', 
           body: JSON.stringify({
             email: this.email,
             password: this.password,
@@ -43,15 +42,9 @@ export default {
         });
         const data = await response.json();
         console.log('Login response:', data);
-
         if (response.ok) {
-          // Сохраняем токен в localStorage (опционально, если он в куки)
           localStorage.setItem('token', data.token);
-
-          // Перенаправляем на главную страницу
           this.$router.push('/');
-
-          // Обновляем страницу через небольшую задержку
           setTimeout(() => {
             location.reload();
           }, 500);
