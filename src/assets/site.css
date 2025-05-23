@@ -18,9 +18,9 @@ html {
 }
 
 body {
-    font-family: 'Roboto Mono', monospace;
-    background: linear-gradient(135deg, #e0c3fc, #8ec5fc); /* Светлый градиент */
-    color: #ffffff; /* Белый текст */
+    font-family: 'Roboto', sans-serif;
+    background: linear-gradient(135deg, #e0e0e0, #f5f7fa); /* Светлый градиент */
+    color: #333; /* Темный текст для читаемости */
     min-height: 100vh;
     display: flex;
     flex-direction: column;
@@ -40,7 +40,7 @@ button {
 
 /* Фокус для кнопок и полей ввода */
 .btn:focus, .btn:active:focus, .nav-link:focus, .form-control:focus, .form-check-input:focus {
-    box-shadow: 0 0 0 0.1rem #ff6b6b, 0 0 0 0.25rem rgba(255, 107, 107, 0.5);
+    box-shadow: 0 0 0 0.1rem #3498db, 0 0 0 0.25rem rgba(52, 152, 219, 0.5); /* Синий акцент */
 }
 
 /* Основной контент */
@@ -57,26 +57,25 @@ main {
 .container {
     max-width: 1200px;
     padding: 20px;
-    background: rgba(26, 32, 44, 0.95); /* Тёмный прозрачный фон */
-    backdrop-filter: blur(10px);
+    background: #ffffff; /* Белый фон */
     border-radius: 8px;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); /* Мягкая тень */
 }
 
 .page-title {
     text-align: center;
     font-size: 2rem;
-    font-weight: bold;
+    font-weight: 600;
     margin-bottom: 20px;
-    color: #ffffff; /* Белый текст */
+    color: #2c3e50; /* Темно-синий текст */
 }
 
 /* Блоки контента */
 .content-block {
-    background: rgba(26, 32, 44, 0.3);
+    background: #f9fafb; /* Очень светлый серый фон */
     padding: 20px;
     border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     transition: transform 0.3s ease;
     margin-bottom: 50px;
 }
@@ -87,7 +86,7 @@ main {
 
 .text-block {
     padding: 20px;
-    background: rgba(255, 255, 255, 0.2); /* Полупрозрачный белый фон */
+    background: rgba(255, 255, 255, 0.5); /* Полупрозрачный белый фон */
     border-radius: 8px;
     display: flex;
     align-items: center;
@@ -115,8 +114,9 @@ main {
     height: auto;
     object-fit: cover;
     border-radius: 10px;
-    border: 2px solid #ffffff; /* Белая рамка */
+    border: 2px solid #3498db; /* Синяя рамка */
     transition: transform 0.3s ease;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
 .img-block:hover {
@@ -124,7 +124,7 @@ main {
 }
 
 p.fs-5 {
-    color: #ffffff; /* Белый текст */
+    color: #333; /* Темный текст */
     font-size: 1.25rem;
 }
 
@@ -148,9 +148,9 @@ p.fs-5 {
 }
 
 .card {
-    background: rgba(26, 32, 44, 0.3);
+    background: #ffffff; /* Белый фон */
     border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     overflow: hidden;
 }
 
@@ -158,14 +158,15 @@ p.fs-5 {
     width: 120px;
     height: 120px;
     border-radius: 50%;
-    border: 3px solid #ffffff; /* Белая рамка */
+    border: 3px solid #3498db; /* Синяя рамка */
     margin: 15px auto;
     object-fit: cover;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
 .card-title,
 .card-text {
-    color: #ffffff; /* Белый текст */
+    color: #333; /* Темный текст */
 }
 
 .card-body {
@@ -180,7 +181,7 @@ p.fs-5 {
 
 .card-text strong {
     font-weight: bold;
-    color: #ffffff;
+    color: #2c3e50; /* Темно-синий */
 }
 
 /* Поля ввода */
@@ -195,11 +196,10 @@ input[type="file"].form-input {
     margin-bottom: 15px;
     border: none;
     outline: none;
-    background: rgba(255, 255, 255, 0.2); /* Полупрозрачный белый фон */
-    backdrop-filter: blur(10px);
+    background: #f1f3f5; /* Светло-серый фон */
     border-radius: 8px;
     font-size: 1rem;
-    color: #ffffff;
+    color: #333; /* Темный текст */
     transition: background-color 0.3s ease, box-shadow 0.3s ease;
 }
 
@@ -209,7 +209,7 @@ input[type="password"]:focus,
 textarea:focus,
 select:focus,
 input[type="file"].form-input:focus {
-    background: rgba(255, 255, 255, 0.3);
+    background: #e6e9ec; /* Чуть темнее при фокусе */
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
 }
 
@@ -218,8 +218,8 @@ textarea.form-input {
 }
 
 .form-input option {
-    background: rgba(26, 32, 44, 0.9);
-    color: #ffffff;
+    background: #ffffff; /* Белый фон */
+    color: #333;
 }
 
 /* Чекбоксы */
@@ -232,7 +232,7 @@ textarea.form-input {
 .form-checkbox input[type="checkbox"] {
     width: 20px;
     height: 20px;
-    accent-color: #ff6b6b; /* Яркий розовый */
+    accent-color: #e67e22; /* Оранжевый */
     cursor: pointer;
 }
 
@@ -241,11 +241,11 @@ button,
 .btn {
     padding: 10px 20px;
     border: none;
-    border-radius: 50px;
+    border-radius: 8px;
     font-size: 1rem;
-    font-weight: bold;
+    font-weight: 600;
     color: #ffffff;
-    background: #ff6b6b; /* Яркий розовый фон */
+    background: #3498db; /* Синий фон */
     transition: transform 0.3s ease, background 0.3s ease, box-shadow 0.3s ease;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
 }
@@ -253,37 +253,37 @@ button,
 button:hover,
 .btn:hover {
     transform: translateY(-3px);
-    background: #4b0082; /* Тёмный фиолетовый */
+    background: #e67e22; /* Оранжевый при наведении */
     box-shadow: 0 6px 15px rgba(0, 0, 0, 0.3);
 }
 
 .btn-primary {
-    background: #ff6b6b;
+    background: #3498db;
     color: #ffffff;
 }
 
 .btn-primary:hover {
-    background: #4b0082;
+    background: #e67e22;
     transform: scale(1.05);
 }
 
 .btn-secondary {
-    background: rgba(255, 255, 255, 0.2);
-    color: #ffffff;
+    background: #e6e9ec; /* Светлый фон */
+    color: #333;
 }
 
 .btn-secondary:hover {
-    background: rgba(255, 255, 255, 0.3);
-    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.3);
+    background: #d1d5db;
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
 }
 
 .btn-danger {
-    background: #ff6b6b;
+    background: #e74c3c; /* Красный */
     color: #ffffff;
 }
 
 .btn-danger:hover {
-    background: #4b0082;
+    background: #c0392b;
     transform: translateY(-3px);
 }
 
@@ -300,28 +300,31 @@ form {
     width: 100%;
     border-collapse: collapse;
     margin-top: 20px;
-    background: rgba(26, 32, 44, 0.95);
-    color: #ffffff;
+    background: #ffffff; /* Белый фон */
+    color: #333; /* Темный текст */
     border-radius: 8px;
     overflow: hidden;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
 }
 
 .table th,
 .table td {
     padding: 15px;
     text-align: center;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.3);
-    border-right: 1px solid rgba(255, 255, 255, 0.3);
+    border-bottom: 1px solid #e0e0e0; /* Светлая граница */
+    border-right: 1px solid #e0e0e0;
     background: transparent;
 }
 
 .table th {
-    background: rgba(255, 107, 107, 0.7); /* Яркий розовый фон */
+    background: linear-gradient(135deg, #3498db, #2980b9); /* Градиент для заголовков */
     color: #ffffff;
+    font-weight: 600;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
 .table tbody tr:hover {
-    background: rgba(255, 255, 255, 0.1);
+    background: #e6f0fa; /* Светло-голубой при наведении */
 }
 
 .table thead th:first-child,
@@ -338,16 +341,36 @@ form {
     display: inline-block;
     padding: 5px 10px;
     border-radius: 5px;
-    font-weight: bold;
+    font-weight: 600;
     color: #ffffff;
 }
 
 .status.available {
-    background: #ff6b6b;
+    background: #2ecc71; /* Зеленый */
 }
 
 .status.unavailable {
-    background: #4b0082;
+    background: #7f8c8d; /* Серый */
+}
+
+.status.pending {
+    background: #3498db; /* Синий */
+}
+
+.status.in-progress {
+    background: #e67e22; /* Оранжевый */
+}
+
+.status.completed {
+    background: #2ecc71; /* Зеленый */
+}
+
+.status.cancelled {
+    background: #7f8c8d; /* Серый */
+}
+
+.status.on-remote {
+    background: #e74c3c; /* Красный */
 }
 
 /* Пагинация */
@@ -367,9 +390,9 @@ form {
     padding: 10px 15px;
     border-radius: 5px;
     font-size: 14px;
-    font-weight: bold;
+    font-weight: 600;
     color: #ffffff;
-    background: #ff6b6b;
+    background: #3498db; /* Синий */
     text-decoration: none;
     transition: transform 0.2s ease, background 0.2s ease;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
@@ -377,16 +400,16 @@ form {
 
 .pagination-item:hover:not(.disabled) {
     transform: translateY(-3px);
-    background: #4b0082;
+    background: #e67e22; /* Оранжевый */
     box-shadow: 0 6px 15px rgba(0, 0, 0, 0.3);
 }
 
 .pagination-item.active {
-    background: #4b0082;
+    background: #e67e22; /* Оранжевый */
 }
 
 .pagination-item.disabled {
-    background: rgba(255, 255, 255, 0.2);
+    background: #bdc3c7; /* Серый */
     cursor: not-allowed;
     box-shadow: none;
 }
@@ -400,38 +423,38 @@ form {
 
 .action-btn {
     background: none;
-    color: #ffffff;
+    color: #3498db; /* Синий */
     font-size: 1.2rem;
     transition: color 0.3s ease, transform 0.3s ease;
 }
 
 .action-btn:hover {
     transform: scale(1.2);
-    color: #ff6b6b;
+    color: #e67e22; /* Оранжевый */
 }
 
 .view-icon {
-    color: #ffffff;
+    color: #3498db;
 }
 
 .view-icon:hover {
-    color: #ff6b6b;
+    color: #2ecc71; /* Зеленый */
 }
 
 .edit-icon {
-    color: #ffffff;
+    color: #3498db;
 }
 
 .edit-icon:hover {
-    color: #ff6b6b;
+    color: #f1c40f; /* Желтый */
 }
 
 .delete-icon {
-    color: #ffffff;
+    color: #3498db;
 }
 
 .delete-icon:hover {
-    color: #ff6b6b;
+    color: #e74c3c; /* Красный */
 }
 
 /* Анимация появления */

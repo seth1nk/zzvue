@@ -19,7 +19,7 @@
         <li><router-link to="/" class="button">Главная</router-link></li>
         <li><router-link to="/about" class="button">О нас</router-link></li>
         <li><router-link to="/contact" class="button">Контакты</router-link></li>
-        <li v-if="isAuthenticated"><router-link to="/smartwatches" class="button">Смарт-часы</router-link></li>
+        <li v-if="isAuthenticated"><router-link to="/repairs" class="button">Ремонты</router-link></li>
         <li v-if="isAuthenticated"><router-link to="/clients" class="button">Клиенты</router-link></li>
         <li v-if="!isAuthenticated"><router-link to="/login" class="button">Войти</router-link></li>
         <li v-if="!isAuthenticated"><router-link to="/register" class="button">Зарегистрироваться</router-link></li>
