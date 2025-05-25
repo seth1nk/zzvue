@@ -3,9 +3,6 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <div class="app-container">
       <h1 class="page-title">Список клиентов</h1>
-      <div style="text-align: center; margin-bottom: 20px;">
-        <router-link to="/clients/create" class="btn-primary">Добавить клиента</router-link>
-      </div>
       <div class="table-container">
         <table class="styled-table clients-table">
           <thead>
@@ -16,8 +13,8 @@
               <th>Телефон</th>
               <th>Email</th>
               <th>Адрес</th>
-              <th>Дата<br>рождения</th>
               <th>Заметки</th>
+              <th>Предпочитаемый<br>способ связи</th>
               <th>Фото</th>
               <th>Действия</th>
             </tr>
@@ -30,15 +27,15 @@
               <td>{{ item.phone || 'N/A' }}</td>
               <td>{{ item.email || 'N/A' }}</td>
               <td>{{ item.address || 'N/A' }}</td>
-              <td>{{ item.birth_date || 'N/A' }}</td>
               <td>{{ item.notes || 'N/A' }}</td>
+              <td>{{ item.preferred_contact || 'N/A' }}</td>
               <td>
                 <img v-if="item.photo" :src="`${backendUrl}${item.photo.replace('/img/', '/images/')}`" alt="Client Photo" class="product-image" />
                 <span v-else>N/A</span>
               </td>
               <td>
                 <div class="action-buttons">
-                  <router-link :to="`/clients/view/${item.id}`" class="action-btn view-icon"><i class="fas fa-eye"></i></router-link>
+                  <router-link :to="`/view-clients/${item.id}`" class="action-btn view-icon"><i class="fas fa-eye"></i></router-link>
                 </div>
               </td>
             </tr>
@@ -105,27 +102,6 @@ export default {
         await this.fetchClients();
       }
     },
-    async deleteClient(id) {
-      if (!confirm('Вы уверены, что хотите удалить этого клиента?')) {
-        return;
-      }
-      try {
-        const response = await fetch(`${this.backendUrl}/delete-client/${id}`, {
-          method: 'DELETE',
-          headers: {
-            'Content-Type': 'application/json',
-          },
-          credentials: 'include',
-        });
-        if (!response.ok) {
-          throw new Error(`HTTP error! Status: ${response.status}`);
-        }
-        await this.fetchClients();
-      } catch (err) {
-        console.error('Error deleting client:', err);
-        alert(`Ошибка: ${err.message}`);
-      }
-    },
   },
 };
 </script>
@@ -137,21 +113,6 @@ export default {
   margin: 0 auto;
   padding: 20px;
   font-family: 'Roboto', sans-serif;
-  background: linear-gradient(135deg, #e0e0e0, #f5f7fa); /* Светлый градиент */
-  color: #333; /* Темный текст */
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-}
-
-.page-title {
-  text-align: center;
-  font-size: 2rem;
-  font-weight: 600;
-  margin-bottom: 20px;
-  color: #2c3e50; /* Темно-синий заголовок */
 }
 
 /* Кнопка "Добавить клиента" */
@@ -161,16 +122,16 @@ export default {
   border-radius: 8px;
   font-size: 1rem;
   font-weight: 600;
-  color: #ffffff;
-  background: #3498db; /* Синий фон */
+  color: #f5f5f5;
+  background: #722f37;
   transition: transform 0.3s ease, background 0.3s ease, box-shadow 0.3s ease;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.2);
 }
 
 .btn-primary:hover {
-  background: #e67e22; /* Оранжевый при наведении */
+  background: #355e3b;
   transform: scale(1.05);
-  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.3);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
 }
 
 /* Настройка таблицы */
@@ -179,15 +140,15 @@ export default {
   max-width: 1400px;
   margin: 0 auto;
   overflow-x: auto;
-  background: #ffffff; /* Белый фон */
+  background: rgba(60, 47, 47, 0.9);
   border-radius: 12px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.3);
   padding: 15px;
 }
 
 .styled-table.clients-table {
   width: 100%;
-  min-width: 900px; /* Уменьшено для компактности */
+  min-width: 900px;
   border-collapse: separate;
   border-spacing: 0;
   border-radius: 8px;
@@ -199,21 +160,21 @@ export default {
   padding: 14px 10px;
   text-align: center;
   vertical-align: middle;
-  border-bottom: 1px solid #e0e0e0; /* Светлая граница */
-  border-right: 1px solid #e0e0e0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+  border-right: 1px solid rgba(255, 255, 255, 0.2);
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
-  color: #333; /* Темный текст */
+  color: #f5f5f5;
 }
 
 .styled-table.clients-table th {
-  background: linear-gradient(135deg, #3498db, #2980b9); /* Градиент для заголовков */
-  color: #ffffff;
+  background: rgba(74, 112, 67, 0.7);
+  color: #f5f5f5;
   font-weight: 600;
   text-transform: uppercase;
   letter-spacing: 0.5px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
 }
 
 .styled-table.clients-table th:last-child,
@@ -225,19 +186,17 @@ export default {
   border-bottom: none;
 }
 
-/* Корректировка для заголовка "Дата рождения" */
-.clients-table th:nth-child(7) {
-  line-height: 1.2; /* Уменьшенный межстрочный интервал */
-  padding: 10px 5px; /* Уменьшенный отступ */
+.styled-table.clients-table th:nth-child(8) {
+  line-height: 1.2;
+  padding: 10px 5px;
 }
 
-/* Эффект полос для строк */
 .styled-table.clients-table tbody tr:nth-child(even) {
-  background: #f9fafb; /* Очень светлый серый */
+  background: rgba(74, 112, 67, 0.1);
 }
 
 .styled-table.clients-table tbody tr:hover {
-  background: #e6f0fa; /* Светло-голубой при наведении */
+  background: rgba(255, 255, 255, 0.1);
   transition: background 0.3s ease;
 }
 
@@ -277,14 +236,16 @@ export default {
   word-break: break-word;
 }
 .clients-table th:nth-child(7),
-.clients-table td:nth-child(7) { /* Дата рождения */
-  width: 10%;
-  min-width: 100px;
-}
-.clients-table th:nth-child(8),
-.clients-table td:nth-child(8) { /* Заметки */
+.clients-table td:nth-child(7) { /* Заметки */
   width: 13%;
   min-width: 120px;
+  white-space: normal;
+  word-break: break-word;
+}
+.clients-table th:nth-child(8),
+.clients-table td:nth-child(8) { /* Предпочитаемый способ связи */
+  width: 12%;
+  min-width: 100px;
   white-space: normal;
   word-break: break-word;
 }
@@ -295,8 +256,8 @@ export default {
 }
 .clients-table th:nth-child(10),
 .clients-table td:nth-child(10) { /* Действия */
-  width: 8%;
-  min-width: 60px;
+  width: 5%;
+  min-width: 40px;
 }
 
 .product-image {
@@ -305,15 +266,15 @@ export default {
   border-radius: 8px;
   object-fit: cover;
   vertical-align: middle;
-  border: 2px solid #3498db;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  border: 2px solid #e8b923;
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.2);
 }
 
 .no-data {
   text-align: center;
   font-size: 1.2rem;
   padding: 20px;
-  color: #666;
+  color: #f5f5f5;
 }
 
 /* Пагинация */
@@ -331,26 +292,26 @@ export default {
   border-radius: 8px;
   font-size: 1rem;
   font-weight: 600;
-  color: #ffffff;
-  background: #3498db;
+  color: #f5f5f5;
+  background: #722f37;
   transition: transform 0.3s ease, background 0.3s ease, box-shadow 0.3s ease;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.2);
 }
 
 .pagination button:disabled {
-  background: #bdc3c7;
+  background: #4a4a4a;
   cursor: not-allowed;
   box-shadow: none;
 }
 
 .pagination button:hover:not(:disabled) {
-  background: #e67e22;
+  background: #355e3b;
   transform: scale(1.05);
-  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.3);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
 }
 
 .pagination span {
-  color: #2c3e50;
+  color: #f5f5f5;
   font-weight: 600;
 }
 
@@ -368,21 +329,21 @@ export default {
   width: 36px;
   height: 36px;
   border-radius: 50%;
-  background: #3498db;
-  color: #ffffff;
+  background: #722f37;
+  color: #f5f5f5;
   font-size: 1rem;
   transition: transform 0.3s ease, background 0.3s ease, box-shadow 0.3s ease;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
 }
 
 .action-btn:hover {
-  background: #e67e22;
+  background: #355e3b;
   transform: scale(1.1);
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
 }
 
 .view-icon:hover {
-  background: #2ecc71; /* Зеленый для просмотра */
+  background: #e8b923;
 }
 
 /* Адаптивность */

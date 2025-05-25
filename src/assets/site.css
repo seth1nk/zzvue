@@ -19,8 +19,8 @@ html {
 
 body {
     font-family: 'Roboto', sans-serif;
-    background: linear-gradient(135deg, #e0e0e0, #f5f7fa); /* Светлый градиент */
-    color: #333; /* Темный текст для читаемости */
+    background: linear-gradient(135deg, #3c2f2f, #4a7043); /* Бордово-зеленый градиент */
+    color: #f5f5f5; /* Светлый текст для читаемости */
     min-height: 100vh;
     display: flex;
     flex-direction: column;
@@ -40,7 +40,7 @@ button {
 
 /* Фокус для кнопок и полей ввода */
 .btn:focus, .btn:active:focus, .nav-link:focus, .form-control:focus, .form-check-input:focus {
-    box-shadow: 0 0 0 0.1rem #3498db, 0 0 0 0.25rem rgba(52, 152, 219, 0.5); /* Синий акцент */
+    box-shadow: 0 0 0 0.1rem #e8b923, 0 0 0 0.25rem rgba(232, 185, 35, 0.5); /* Золотистый акцент */
 }
 
 /* Основной контент */
@@ -57,9 +57,9 @@ main {
 .container {
     max-width: 1200px;
     padding: 20px;
-    background: #ffffff; /* Белый фон */
+    background: rgba(60, 47, 47, 0.9); /* Темно-бордовый фон */
     border-radius: 8px;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); /* Мягкая тень */
+    box-shadow: 0 3px 8px rgba(0, 0, 0, 0.3); /* Мягкая тень */
 }
 
 .page-title {
@@ -67,15 +67,15 @@ main {
     font-size: 2rem;
     font-weight: 600;
     margin-bottom: 20px;
-    color: #2c3e50; /* Темно-синий текст */
+    color: #f5f5f5; /* Светлый текст */
 }
 
 /* Блоки контента */
 .content-block {
-    background: #f9fafb; /* Очень светлый серый фон */
+    background: rgba(74, 112, 67, 0.3); /* Полупрозрачный темно-зеленый фон */
     padding: 20px;
     border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 3px 8px rgba(0, 0, 0, 0.2);
     transition: transform 0.3s ease;
     margin-bottom: 50px;
 }
@@ -86,7 +86,7 @@ main {
 
 .text-block {
     padding: 20px;
-    background: rgba(255, 255, 255, 0.5); /* Полупрозрачный белый фон */
+    background: rgba(60, 47, 47, 0.7); /* Полупрозрачный бордовый фон */
     border-radius: 8px;
     display: flex;
     align-items: center;
@@ -114,9 +114,9 @@ main {
     height: auto;
     object-fit: cover;
     border-radius: 10px;
-    border: 2px solid #3498db; /* Синяя рамка */
+    border: 2px solid #e8b923; /* Золотистая рамка */
     transition: transform 0.3s ease;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.2);
 }
 
 .img-block:hover {
@@ -124,7 +124,7 @@ main {
 }
 
 p.fs-5 {
-    color: #333; /* Темный текст */
+    color: #f5f5f5; /* Светлый текст */
     font-size: 1.25rem;
 }
 
@@ -148,9 +148,9 @@ p.fs-5 {
 }
 
 .card {
-    background: #ffffff; /* Белый фон */
+    background: rgba(60, 47, 47, 0.9); /* Темно-бордовый фон */
     border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 3px 8px rgba(0, 0, 0, 0.2);
     overflow: hidden;
 }
 
@@ -158,15 +158,15 @@ p.fs-5 {
     width: 120px;
     height: 120px;
     border-radius: 50%;
-    border: 3px solid #3498db; /* Синяя рамка */
+    border: 3px solid #e8b923; /* Золотистая рамка */
     margin: 15px auto;
     object-fit: cover;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.2);
 }
 
 .card-title,
 .card-text {
-    color: #333; /* Темный текст */
+    color: #f5f5f5; /* Светлый текст */
 }
 
 .card-body {
@@ -181,7 +181,7 @@ p.fs-5 {
 
 .card-text strong {
     font-weight: bold;
-    color: #2c3e50; /* Темно-синий */
+    color: #ffffff; /* Белый для контраста */
 }
 
 /* Поля ввода */
@@ -196,10 +196,10 @@ input[type="file"].form-input {
     margin-bottom: 15px;
     border: none;
     outline: none;
-    background: #f1f3f5; /* Светло-серый фон */
+    background: rgba(74, 112, 67, 0.3); /* Полупрозрачный темно-зеленый фон */
     border-radius: 8px;
     font-size: 1rem;
-    color: #333; /* Темный текст */
+    color: #f5f5f5; /* Светлый текст */
     transition: background-color 0.3s ease, box-shadow 0.3s ease;
 }
 
@@ -209,8 +209,8 @@ input[type="password"]:focus,
 textarea:focus,
 select:focus,
 input[type="file"].form-input:focus {
-    background: #e6e9ec; /* Чуть темнее при фокусе */
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    background: rgba(74, 112, 67, 0.5); /* Чуть ярче при фокусе */
+    box-shadow: 0 3px 8px rgba(0, 0, 0, 0.2);
 }
 
 textarea.form-input {
@@ -218,8 +218,8 @@ textarea.form-input {
 }
 
 .form-input option {
-    background: #ffffff; /* Белый фон */
-    color: #333;
+    background: #3c2f2f; /* Бордовый фон */
+    color: #f5f5f5;
 }
 
 /* Чекбоксы */
@@ -232,7 +232,7 @@ textarea.form-input {
 .form-checkbox input[type="checkbox"] {
     width: 20px;
     height: 20px;
-    accent-color: #e67e22; /* Оранжевый */
+    accent-color: #e8b923; /* Золотистый */
     cursor: pointer;
 }
 
@@ -244,46 +244,46 @@ button,
     border-radius: 8px;
     font-size: 1rem;
     font-weight: 600;
-    color: #ffffff;
-    background: #3498db; /* Синий фон */
+    color: #f5f5f5;
+    background: #722f37; /* Бордовый фон */
     transition: transform 0.3s ease, background 0.3s ease, box-shadow 0.3s ease;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 3px 8px rgba(0, 0, 0, 0.2);
 }
 
 button:hover,
 .btn:hover {
     transform: translateY(-3px);
-    background: #e67e22; /* Оранжевый при наведении */
-    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.3);
+    background: #355e3b; /* Темно-зеленый при наведении */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
 }
 
 .btn-primary {
-    background: #3498db;
-    color: #ffffff;
+    background: #722f37;
+    color: #f5f5f5;
 }
 
 .btn-primary:hover {
-    background: #e67e22;
+    background: #355e3b;
     transform: scale(1.05);
 }
 
 .btn-secondary {
-    background: #e6e9ec; /* Светлый фон */
-    color: #333;
+    background: rgba(74, 112, 67, 0.3); /* Полупрозрачный зеленый фон */
+    color: #f5f5f5;
 }
 
 .btn-secondary:hover {
-    background: #d1d5db;
-    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
+    background: rgba(74, 112, 67, 0.5);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
 }
 
 .btn-danger {
-    background: #e74c3c; /* Красный */
-    color: #ffffff;
+    background: #4a4a4a; /* Темно-серый */
+    color: #f5f5f5;
 }
 
 .btn-danger:hover {
-    background: #c0392b;
+    background: #722f37;
     transform: translateY(-3px);
 }
 
@@ -300,31 +300,31 @@ form {
     width: 100%;
     border-collapse: collapse;
     margin-top: 20px;
-    background: #ffffff; /* Белый фон */
-    color: #333; /* Темный текст */
+    background: rgba(60, 47, 47, 0.9); /* Темно-бордовый фон */
+    color: #f5f5f5; /* Светлый текст */
     border-radius: 8px;
     overflow: hidden;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 3px 8px rgba(0, 0, 0, 0.2);
 }
 
 .table th,
 .table td {
     padding: 15px;
     text-align: center;
-    border-bottom: 1px solid #e0e0e0; /* Светлая граница */
-    border-right: 1px solid #e0e0e0;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+    border-right: 1px solid rgba(255, 255, 255, 0.2);
     background: transparent;
 }
 
 .table th {
-    background: linear-gradient(135deg, #3498db, #2980b9); /* Градиент для заголовков */
-    color: #ffffff;
+    background: rgba(74, 112, 67, 0.7); /* Темно-зеленый градиент для заголовков */
+    color: #f5f5f5;
     font-weight: 600;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
 }
 
 .table tbody tr:hover {
-    background: #e6f0fa; /* Светло-голубой при наведении */
+    background: rgba(255, 255, 255, 0.1); /* Легкий белый при наведении */
 }
 
 .table thead th:first-child,
@@ -342,35 +342,35 @@ form {
     padding: 5px 10px;
     border-radius: 5px;
     font-weight: 600;
-    color: #ffffff;
+    color: #f5f5f5;
 }
 
 .status.available {
-    background: #2ecc71; /* Зеленый */
+    background: #355e3b; /* Зеленый */
 }
 
 .status.unavailable {
-    background: #7f8c8d; /* Серый */
+    background: #4a4a4a; /* Серый */
 }
 
 .status.pending {
-    background: #3498db; /* Синий */
+    background: #722f37; /* Бордовый */
 }
 
 .status.in-progress {
-    background: #e67e22; /* Оранжевый */
+    background: #e8b923; /* Золотистый */
 }
 
 .status.completed {
-    background: #2ecc71; /* Зеленый */
+    background: #355e3b; /* Зеленый */
 }
 
 .status.cancelled {
-    background: #7f8c8d; /* Серый */
+    background: #4a4a4a; /* Серый */
 }
 
 .status.on-remote {
-    background: #e74c3c; /* Красный */
+    background: #722f37; /* Бордовый */
 }
 
 /* Пагинация */
@@ -391,25 +391,25 @@ form {
     border-radius: 5px;
     font-size: 14px;
     font-weight: 600;
-    color: #ffffff;
-    background: #3498db; /* Синий */
+    color: #f5f5f5;
+    background: #722f37; /* Бордовый */
     text-decoration: none;
     transition: transform 0.2s ease, background 0.2s ease;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 3px 8px rgba(0, 0, 0, 0.2);
 }
 
 .pagination-item:hover:not(.disabled) {
     transform: translateY(-3px);
-    background: #e67e22; /* Оранжевый */
-    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.3);
+    background: #355e3b; /* Зеленый */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
 }
 
 .pagination-item.active {
-    background: #e67e22; /* Оранжевый */
+    background: #355e3b; /* Зеленый */
 }
 
 .pagination-item.disabled {
-    background: #bdc3c7; /* Серый */
+    background: #4a4a4a; /* Серый */
     cursor: not-allowed;
     box-shadow: none;
 }
@@ -423,38 +423,38 @@ form {
 
 .action-btn {
     background: none;
-    color: #3498db; /* Синий */
+    color: #e8b923; /* Золотистый */
     font-size: 1.2rem;
     transition: color 0.3s ease, transform 0.3s ease;
 }
 
 .action-btn:hover {
     transform: scale(1.2);
-    color: #e67e22; /* Оранжевый */
+    color: #355e3b; /* Зеленый */
 }
 
 .view-icon {
-    color: #3498db;
+    color: #e8b923;
 }
 
 .view-icon:hover {
-    color: #2ecc71; /* Зеленый */
+    color: #355e3b;
 }
 
 .edit-icon {
-    color: #3498db;
+    color: #e8b923;
 }
 
 .edit-icon:hover {
-    color: #f1c40f; /* Желтый */
+    color: #355e3b;
 }
 
 .delete-icon {
-    color: #3498db;
+    color: #e8b923;
 }
 
 .delete-icon:hover {
-    color: #e74c3c; /* Красный */
+    color: #722f37; /* Бордовый */
 }
 
 /* Анимация появления */

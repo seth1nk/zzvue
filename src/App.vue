@@ -103,16 +103,16 @@ export default {
   top: 50%;
   right: 0;
   transform: translateY(-50%);
-  background: rgba(26, 32, 44, 0.95); /* Тёмный прозрачный фон */
+  background: linear-gradient(135deg, rgba(60, 47, 47, 0.95), rgba(74, 112, 67, 0.95)); /* Бордово-зеленый градиент */
   backdrop-filter: blur(10px);
-  border-left: 1px solid rgba(255, 255, 255, 0.3); /* Белая граница */
+  border-left: 1px solid rgba(255, 255, 255, 0.2); /* Полупрозрачная белая граница */
   padding: 20px;
   display: flex;
   flex-direction: column;
   align-items: center;
   gap: 15px;
   border-radius: 10px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.3);
 }
 
 /* Логотип */
@@ -148,20 +148,20 @@ export default {
   display: block;
   width: 180px;
   padding: 10px 15px;
-  background: #ff6b6b; /* Яркий розовый фон */
-  color: #ffffff; /* Белый текст */
+  background: #722f37; /* Бордовый фон */
+  color: #f5f5f5; /* Светлый текст */
   text-decoration: none;
   border-radius: 8px;
   font-weight: bold;
   text-align: center;
   transition: background 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.2);
 }
 
 .button:hover {
-  background: #4b0082; /* Тёмный фиолетовый при ховере */
+  background: #355e3b; /* Зеленый при наведении */
   transform: translateY(-2px);
-  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.3);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
 }
 
 /* Кнопка админ-панели */
@@ -169,21 +169,21 @@ export default {
   display: block;
   width: auto;
   padding: 10px 15px;
-  background: linear-gradient(135deg, #ff6b6b, #4b0082); /* Градиент розовый-фиолетовый */
-  color: #ffffff;
+  background: linear-gradient(135deg, #722f37, #355e3b); /* Градиент бордовый-зеленый */
+  color: #f5f5f5;
   text-decoration: none;
   border-radius: 8px;
   font-weight: bold;
   text-transform: uppercase;
   text-align: center;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.2);
   transition: background 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
 }
 
 .admin-button:hover {
-  background: linear-gradient(135deg, #4b0082, #ff6b6b);
+  background: linear-gradient(135deg, #355e3b, #722f37); /* Обратный градиент при наведении */
   transform: translateY(-2px);
-  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.3);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
 }
 
 /* Приветственное сообщение */
@@ -192,10 +192,10 @@ export default {
   width: auto;
   padding: 10px 15px;
   font-size: 16px;
-  color: #ffffff; /* Белый текст */
+  color: #f5f5f5; /* Светлый текст */
   font-weight: bold;
   text-align: center;
-  background: rgba(255, 255, 255, 0.2); /* Полупрозрачный белый фон */
+  background: rgba(60, 47, 47, 0.5); /* Полупрозрачный бордовый фон */
   border-radius: 8px;
 }
 

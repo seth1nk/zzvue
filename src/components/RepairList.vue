@@ -3,21 +3,18 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <div class="app-container">
       <h1 class="page-title">Список ремонтов</h1>
-      <div style="text-align: center; margin-bottom: 20px;">
-        <router-link to="/repairs/create" class="btn-primary">Добавить ремонт</router-link>
-      </div>
       <div class="table-container">
         <table class="styled-table repairs-table">
           <thead>
             <tr>
               <th>ID</th>
-              <th>Тип устройства</th>
+              <th>Имя клиента</th>
+              <th>Тип холодильника</th>
               <th>Бренд</th>
               <th>Модель</th>
-              <th>Описание проблемы</th>
+              <th>Описание неисправности</th>
               <th>Стоимость ремонта</th>
               <th>Статус</th>
-              <th>Дата</th>
               <th>Фото</th>
               <th>Действия</th>
             </tr>
@@ -25,24 +22,20 @@
           <tbody>
             <tr v-for="(item, index) in repairs" :key="item.id">
               <td>{{ (currentPage - 1) * pageSize + index + 1 }}</td>
-              <td>{{ item.device_type || 'N/A' }}</td>
-              <td>{{ item.device_brand || 'N/A' }}</td>
-              <td>{{ item.device_model || 'N/A' }}</td>
+              <td>{{ item.client_name || 'N/A' }}</td>
+              <td>{{ item.type || 'N/A' }}</td>
+              <td>{{ item.brand || 'N/A' }}</td>
+              <td>{{ item.model || 'N/A' }}</td>
               <td>{{ item.issue_description || 'N/A' }}</td>
-              <td>{{ item.repair_cost ? `${item.repair_cost} ₽` : 'N/A' }}</td>
-              <td>
-                <span :class="['status', getStatusClass(item.status)]">
-                  {{ item.status || 'N/A' }}
-                </span>
-              </td>
-              <td>{{ item.date || 'N/A' }}</td>
+              <td>{{ item.repair_cost || 'N/A' }}</td>
+              <td>{{ item.status || 'N/A' }}</td>
               <td>
                 <img v-if="item.photo" :src="`${backendUrl}${item.photo.replace('/img/', '/images/')}`" alt="Repair Photo" class="product-image" />
                 <span v-else>N/A</span>
               </td>
               <td>
                 <div class="action-buttons">
-                  <router-link :to="`/repairs/view/${item.id}`" class="action-btn view-icon"><i class="fas fa-eye"></i></router-link>
+                  <router-link :to="`/view-repairs/${item.id}`" class="action-btn view-icon"><i class="fas fa-eye"></i></router-link>
                 </div>
               </td>
             </tr>
@@ -109,43 +102,6 @@ export default {
         await this.fetchRepairs();
       }
     },
-    async deleteRepair(id) {
-      if (!confirm('Вы уверены, что хотите удалить этот ремонт?')) {
-        return;
-      }
-      try {
-        const response = await fetch(`${this.backendUrl}/delete-repair/${id}`, {
-          method: 'DELETE',
-          headers: {
-            'Content-Type': 'application/json',
-          },
-          credentials: 'include',
-        });
-        if (!response.ok) {
-          throw new Error(`HTTP error! Status: ${response.status}`);
-        }
-        await this.fetchRepairs();
-      } catch (err) {
-        console.error('Error deleting repair:', err);
-        alert(`Ошибка: ${err.message}`);
-      }
-    },
-    getStatusClass(status) {
-      switch (status) {
-        case 'В ожидании':
-          return 'pending';
-        case 'В ремонте':
-          return 'in-progress';
-        case 'Завершен':
-          return 'completed';
-        case 'Отменен':
-          return 'cancelled';
-        case 'В ожидании на удалёнке':
-          return 'on-remote';
-        default:
-          return 'pending';
-      }
-    },
   },
 };
 </script>
@@ -157,21 +113,6 @@ export default {
   margin: 0 auto;
   padding: 20px;
   font-family: 'Roboto', sans-serif;
-  background: linear-gradient(135deg, #e0e0e0, #f5f7fa); /* Светлый градиент */
-  color: #333; /* Темный текст для читаемости */
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-}
-
-.page-title {
-  text-align: center;
-  font-size: 2rem;
-  font-weight: 600;
-  margin-bottom: 20px;
-  color: #2c3e50; /* Темно-синий заголовок */
 }
 
 /* Кнопка "Добавить ремонт" */
@@ -181,47 +122,16 @@ export default {
   border-radius: 8px;
   font-size: 1rem;
   font-weight: 600;
-  color: #ffffff;
-  background: #3498db; /* Синий фон */
+  color: #f5f5f5;
+  background: #722f37;
   transition: transform 0.3s ease, background 0.3s ease, box-shadow 0.3s ease;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.2);
 }
 
 .btn-primary:hover {
-  background: #e67e22; /* Оранжевый при наведении */
+  background: #355e3b;
   transform: scale(1.05);
-  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.3);
-}
-
-/* Стили для статуса */
-.status {
-  display: inline-block;
-  padding: 6px 12px;
-  border-radius: 12px;
-  font-size: 0.9rem;
-  font-weight: 500;
-  text-align: center;
-  min-width: 100px;
-}
-.status.pending {
-  background: #3498db; /* Синий */
-  color: #ffffff;
-}
-.status.in-progress {
-  background: #e67e22; /* Оранжевый */
-  color: #ffffff;
-}
-.status.completed {
-  background: #2ecc71; /* Зеленый */
-  color: #ffffff;
-}
-.status.cancelled {
-  background: #7f8c8d; /* Серый */
-  color: #ffffff;
-}
-.status.on-remote {
-  background: #e74c3c; /* Красный */
-  color: #ffffff;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
 }
 
 /* Настройка таблицы */
@@ -230,15 +140,15 @@ export default {
   max-width: 1400px;
   margin: 0 auto;
   overflow-x: auto;
-  background: #ffffff; /* Белый фон */
+  background: rgba(60, 47, 47, 0.9);
   border-radius: 12px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.3);
   padding: 15px;
 }
 
 .styled-table.repairs-table {
   width: 100%;
-  min-width: 900px; /* Уменьшено для компактности */
+  min-width: 700px; /* Можно уменьшить до 600px, если всё ещё слишком широко */
   border-collapse: separate;
   border-spacing: 0;
   border-radius: 8px;
@@ -250,21 +160,18 @@ export default {
   padding: 14px 10px;
   text-align: center;
   vertical-align: middle;
-  border-bottom: 1px solid #e0e0e0; /* Светлая граница */
-  border-right: 1px solid #e0e0e0;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  color: #333; /* Темный текст */
+  border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+  border-right: 1px solid rgba(255, 255, 255, 0.2);
+  color: #f5f5f5;
 }
 
 .styled-table.repairs-table th {
-  background: linear-gradient(135deg, #3498db, #2980b9); /* Градиент для заголовков */
-  color: #ffffff;
+  background: rgba(74, 112, 67, 0.7);
+  color: #f5f5f5;
   font-weight: 600;
   text-transform: uppercase;
   letter-spacing: 0.5px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
 }
 
 .styled-table.repairs-table th:last-child,
@@ -276,13 +183,12 @@ export default {
   border-bottom: none;
 }
 
-/* Эффект полос для строк */
 .styled-table.repairs-table tbody tr:nth-child(even) {
-  background: #f9fafb; /* Очень светлый серый */
+  background: rgba(74, 112, 67, 0.1);
 }
 
 .styled-table.repairs-table tbody tr:hover {
-  background: #e6f0fa; /* Светло-голубой при наведении */
+  background: rgba(255, 255, 255, 0.1);
   transition: background 0.3s ease;
 }
 
@@ -293,43 +199,49 @@ export default {
   min-width: 40px;
 }
 .repairs-table th:nth-child(2),
-.repairs-table td:nth-child(2) { /* Тип устройства */
-  width: 10%;
-  min-width: 100px;
+.repairs-table td:nth-child(2) { /* Имя клиента */
+  width: 6%;
+  min-width: 50px;
+  white-space: normal;
+  word-break: break-word;
 }
 .repairs-table th:nth-child(3),
-.repairs-table td:nth-child(3) { /* Бренд */
-  width: 10%;
-  min-width: 100px;
+.repairs-table td:nth-child(3) { /* Тип холодильника */
+  width: 5%;
+  min-width: 40px;
+  white-space: normal;
+  word-break: break-word;
 }
 .repairs-table th:nth-child(4),
-.repairs-table td:nth-child(4) { /* Модель */
-  width: 10%;
-  min-width: 100px;
-  white-space: normal; /* Разрешить перенос текста */
-  word-break: break-word; /* Перенос слов */
+.repairs-table td:nth-child(4) { /* Бренд */
+  width: 5%;
+  min-width: 40px;
+  white-space: normal;
+  word-break: break-word;
 }
 .repairs-table th:nth-child(5),
-.repairs-table td:nth-child(5) { /* Описание проблемы */
-  width: 18%;
-  min-width: 150px;
+.repairs-table td:nth-child(5) { /* Модель */
+  width: 8%;
+  min-width: 60px;
   white-space: normal;
   word-break: break-word;
 }
 .repairs-table th:nth-child(6),
-.repairs-table td:nth-child(6) { /* Стоимость ремонта */
-  width: 10%;
-  min-width: 100px;
+.repairs-table td:nth-child(6) { /* Описание неисправности */
+  width: 20%;
+  min-width: 150px;
+  white-space: normal;
+  word-break: break-word;
 }
 .repairs-table th:nth-child(7),
-.repairs-table td:nth-child(7) { /* Статус */
+.repairs-table td:nth-child(7) { /* Стоимость ремонта */
   width: 10%;
-  min-width: 100px;
+  min-width: 80px;
 }
 .repairs-table th:nth-child(8),
-.repairs-table td:nth-child(8) { /* Дата */
+.repairs-table td:nth-child(8) { /* Статус */
   width: 10%;
-  min-width: 100px;
+  min-width: 80px;
 }
 .repairs-table th:nth-child(9),
 .repairs-table td:nth-child(9) { /* Фото */
@@ -338,8 +250,8 @@ export default {
 }
 .repairs-table th:nth-child(10),
 .repairs-table td:nth-child(10) { /* Действия */
-  width: 8%;
-  min-width: 60px;
+  width: 5%;
+  min-width: 40px;
 }
 
 .product-image {
@@ -348,15 +260,15 @@ export default {
   border-radius: 8px;
   object-fit: cover;
   vertical-align: middle;
-  border: 2px solid #3498db;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  border: 2px solid #e8b923;
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.2);
 }
 
 .no-data {
   text-align: center;
   font-size: 1.2rem;
   padding: 20px;
-  color: #666;
+  color: #f5f5f5;
 }
 
 /* Пагинация */
@@ -374,26 +286,26 @@ export default {
   border-radius: 8px;
   font-size: 1rem;
   font-weight: 600;
-  color: #ffffff;
-  background: #3498db;
+  color: #f5f5f5;
+  background: #722f37;
   transition: transform 0.3s ease, background 0.3s ease, box-shadow 0.3s ease;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.2);
 }
 
 .pagination button:disabled {
-  background: #bdc3c7;
+  background: #4a4a4a;
   cursor: not-allowed;
   box-shadow: none;
 }
 
 .pagination button:hover:not(:disabled) {
-  background: #e67e22;
+  background: #355e3b;
   transform: scale(1.05);
-  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.3);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
 }
 
 .pagination span {
-  color: #2c3e50;
+  color: #f5f5f5;
   font-weight: 600;
 }
 
@@ -411,21 +323,21 @@ export default {
   width: 36px;
   height: 36px;
   border-radius: 50%;
-  background: #3498db;
-  color: #ffffff;
+  background: #722f37;
+  color: #f5f5f5;
   font-size: 1rem;
   transition: transform 0.3s ease, background 0.3s ease, box-shadow 0.3s ease;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
 }
 
 .action-btn:hover {
-  background: #e67e22;
+  background: #355e3b;
   transform: scale(1.1);
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
 }
 
 .view-icon:hover {
-  background: #2ecc71; /* Зеленый для просмотра */
+  background: #e8b923;
 }
 
 /* Адаптивность */
@@ -450,7 +362,7 @@ export default {
 
   .repairs-table th,
   .repairs-table td {
-    min-width: 40px;
+    min-width: 30px;
   }
 
   .product-image {

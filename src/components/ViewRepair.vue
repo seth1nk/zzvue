@@ -9,21 +9,17 @@
         <span v-else>Нет изображения</span>
       </div>
       <div class="repair-info">
-        <p><strong>Тип устройства:</strong> {{ repair.device_type || 'N/A' }}</p>
-        <p><strong>Бренд:</strong> {{ repair.device_brand || 'N/A' }}</p>
-        <p><strong>Модель:</strong> {{ repair.device_model || 'N/A' }}</p>
-        <p><strong>Описание проблемы:</strong> {{ repair.issue_description || 'N/A' }}</p>
+        <p><strong>Имя клиента:</strong> {{ repair.client_name || 'N/A' }}</p>
+        <p><strong>Тип холодильника:</strong> {{ repair.type || 'N/A' }}</p>
+        <p><strong>Бренд:</strong> {{ repair.brand || 'N/A' }}</p>
+        <p><strong>Модель:</strong> {{ repair.model || 'N/A' }}</p>
+        <p><strong>Описание неисправности:</strong> {{ repair.issue_description || 'N/A' }}</p>
         <p><strong>Стоимость ремонта:</strong> {{ repair.repair_cost || 'N/A' }}</p>
-        <p>
-          <strong>Статус:</strong>
-          <span :class="['status', getStatusClass(repair.status)]">
-            {{ repair.status || 'N/A' }}
-          </span>
-        </p>
-        <p><strong>Дата:</strong> {{ repair.date || 'N/A' }}</p>
+        <p><strong>Статус:</strong> {{ repair.status || 'N/A' }}</p>
       </div>
       <div class="action-buttons">
         <button class="btn-secondary" @click="$router.push('/repairs')">Вернуться к списку</button>
+        <router-link :to="`/repairs/edit/${repair.id}`" class="btn-primary">Редактировать</router-link>
       </div>
     </div>
     <div v-else class="error-message">Не удалось загрузить данные о ремонте.</div>
@@ -75,31 +71,15 @@ export default {
         this.loading = false;
       }
     },
-    getStatusClass(status) {
-      switch (status) {
-        case 'В ожидании':
-          return 'pending';
-        case 'В ремонте':
-          return 'in-progress';
-        case 'Завершен':
-          return 'completed';
-        case 'Отменен':
-          return 'cancelled';
-        case 'В ожидании на удалёнке':
-          return 'on-remote';
-        default:
-          return 'pending';
-      }
-    },
   },
 };
 </script>
 
 <style scoped>
 .repair-details {
-  background: rgba(44, 62, 80, 0.95);
+  background: rgba(60, 47, 47, 0.9);
   border-radius: 8px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.3);
   padding: 20px;
   width: 100%;
   max-width: 600px;
@@ -121,8 +101,8 @@ export default {
   max-height: 150px;
   border-radius: 8px;
   object-fit: cover;
-  border: 2px solid #3498db;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+  border: 2px solid #e8b923;
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.2);
 }
 
 .repair-info {
@@ -133,7 +113,7 @@ export default {
 
 .repair-info p {
   margin: 10px 0;
-  color: #e0e0e0;
+  color: #f5f5f5;
   font-size: 1.25rem;
 }
 
@@ -142,52 +122,50 @@ export default {
   font-weight: 600;
 }
 
-.status {
-  display: inline-block;
-  padding: 6px 12px;
-  border-radius: 12px;
-  font-size: 0.9rem;
-  font-weight: 500;
-  text-align: center;
-  min-width: 100px;
-}
-
-.status.pending {
-  background: #3498db;
-  color: #ffffff;
-}
-
-.status.in-progress {
-  background: #e67e22;
-  color: #ffffff;
-}
-
-.status.completed {
-  background: #2ecc71;
-  color: #ffffff;
-}
-
-.status.cancelled {
-  background: #7f8c8d;
-  color: #ffffff;
-}
-
-.status.on-remote {
-  background: #e74c3c;
-  color: #ffffff;
-}
-
 .action-buttons {
   display: flex;
   gap: 10px;
   margin-top: 20px;
 }
 
+.btn-primary {
+  padding: 10px 20px;
+  border-radius: 8px;
+  font-size: 1rem;
+  font-weight: 600;
+  color: #f5f5f5;
+  background: #722f37;
+  transition: transform 0.3s ease, background 0.3s ease, box-shadow 0.3s ease;
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.2);
+}
+
+.btn-primary:hover {
+  background: #355e3b;
+  transform: scale(1.05);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+}
+
+.btn-secondary {
+  padding: 10px 20px;
+  border-radius: 8px;
+  font-size: 1rem;
+  font-weight: 600;
+  color: #f5f5f5;
+  background: rgba(74, 112, 67, 0.3);
+  transition: background-color 0.3s ease, box-shadow 0.3s ease;
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.2);
+}
+
+.btn-secondary:hover {
+  background: rgba(74, 112, 67, 0.5);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+}
+
 .loading-message,
 .error-message {
   text-align: center;
   font-size: 1.2rem;
-  color: #e0e0e0;
+  color: #f5f5f5;
 }
 
 @media (max-width: 768px) {

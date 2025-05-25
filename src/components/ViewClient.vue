@@ -14,11 +14,12 @@
         <p><strong>Телефон:</strong> {{ client.phone || 'N/A' }}</p>
         <p><strong>Email:</strong> {{ client.email || 'N/A' }}</p>
         <p><strong>Адрес:</strong> {{ client.address || 'N/A' }}</p>
-        <p><strong>Дата рождения:</strong> {{ client.birth_date || 'N/A' }}</p>
         <p><strong>Заметки:</strong> {{ client.notes || 'N/A' }}</p>
+        <p><strong>Предпочитаемый способ связи:</strong> {{ client.preferred_contact || 'N/A' }}</p>
       </div>
       <div class="action-buttons">
         <button class="btn-secondary" @click="$router.push('/clients')">Вернуться к списку</button>
+        <router-link :to="`/clients/edit/${client.id}`" class="btn-primary">Редактировать</router-link>
       </div>
     </div>
     <div v-else class="error-message">Не удалось загрузить данные о клиенте.</div>
@@ -76,9 +77,9 @@ export default {
 
 <style scoped>
 .client-details {
-  background: rgba(44, 62, 80, 0.95);
+  background: rgba(60, 47, 47, 0.9);
   border-radius: 8px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.3);
   padding: 20px;
   width: 100%;
   max-width: 600px;
@@ -100,8 +101,8 @@ export default {
   max-height: 150px;
   border-radius: 8px;
   object-fit: cover;
-  border: 2px solid #3498db;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+  border: 2px solid #e8b923;
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.2);
 }
 
 .client-info {
@@ -112,7 +113,7 @@ export default {
 
 .client-info p {
   margin: 10px 0;
-  color: #e0e0e0;
+  color: #f5f5f5;
   font-size: 1.25rem;
 }
 
@@ -127,11 +128,44 @@ export default {
   margin-top: 20px;
 }
 
+.btn-primary {
+  padding: 10px 20px;
+  border-radius: 8px;
+  font-size: 1rem;
+  font-weight: 600;
+  color: #f5f5f5;
+  background: #722f37;
+  transition: transform 0.3s ease, background 0.3s ease, box-shadow 0.3s ease;
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.2);
+}
+
+.btn-primary:hover {
+  background: #355e3b;
+  transform: scale(1.05);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+}
+
+.btn-secondary {
+  padding: 10px 20px;
+  border-radius: 8px;
+  font-size: 1rem;
+  font-weight: 600;
+  color: #f5f5f5;
+  background: rgba(74, 112, 67, 0.3);
+  transition: background-color 0.3s ease, box-shadow 0.3s ease;
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.2);
+}
+
+.btn-secondary:hover {
+  background: rgba(74, 112, 67, 0.5);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+}
+
 .loading-message,
 .error-message {
   text-align: center;
   font-size: 1.2rem;
-  color: #e0e0e0;
+  color: #f5f5f5;
 }
 
 @media (max-width: 768px) {

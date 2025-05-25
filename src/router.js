@@ -17,8 +17,8 @@ const routes = [
   { path: '/repairs', component: RepairList },
   { path: '/login', component: LoginPage },    
   { path: '/register', component: RegisterPage }, 
-  { path: '/view-client/:id', component: ViewClient },
-  { path: '/view-repair/:id', component: ViewRepair },
+  { path: '/view-clients/:id', component: ViewClient },
+  { path: '/view-repairs/:id', component: ViewRepair },
 ];
 
 const router = createRouter({
