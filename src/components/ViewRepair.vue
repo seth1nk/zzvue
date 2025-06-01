@@ -10,7 +10,7 @@
       </div>
       <div class="repair-info">
         <p><strong>Имя клиента:</strong> {{ repair.client_name || 'N/A' }}</p>
-        <p><strong>Тип холодильника:</strong> {{ repair.type || 'N/A' }}</p>
+        <p><strong>Тип монитора:</strong> {{ repair.type || 'N/A' }}</p>
         <p><strong>Бренд:</strong> {{ repair.brand || 'N/A' }}</p>
         <p><strong>Модель:</strong> {{ repair.model || 'N/A' }}</p>
         <p><strong>Описание неисправности:</strong> {{ repair.issue_description || 'N/A' }}</p>
@@ -76,10 +76,20 @@ export default {
 </script>
 
 <style scoped>
+.app-container {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 20px;
+  font-family: 'Roboto', sans-serif;
+  background: #ffffff;
+  border-radius: 12px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+}
+
 .repair-details {
-  background: rgba(60, 47, 47, 0.9);
-  border-radius: 8px;
-  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.3);
+  background: #ffffff;
+  border-radius: 12px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
   padding: 20px;
   width: 100%;
   max-width: 600px;
@@ -96,12 +106,12 @@ export default {
   margin-bottom: 20px;
 }
 
-.product-image-container .product-image {
+.product-image {
   max-width: 150px;
   max-height: 150px;
   border-radius: 8px;
   object-fit: cover;
-  border: 2px solid #e8b923;
+  border: 2px solid #3b82f6;
   box-shadow: 0 3px 6px rgba(0, 0, 0, 0.2);
 }
 
@@ -113,12 +123,12 @@ export default {
 
 .repair-info p {
   margin: 10px 0;
-  color: #f5f5f5;
+  color: #1f2937;
   font-size: 1.25rem;
 }
 
 .repair-info strong {
-  color: #ffffff;
+  color: #1f2937;
   font-weight: 600;
 }
 
@@ -133,16 +143,15 @@ export default {
   border-radius: 8px;
   font-size: 1rem;
   font-weight: 600;
-  color: #f5f5f5;
-  background: #722f37;
-  transition: transform 0.3s ease, background 0.3s ease, box-shadow 0.3s ease;
+  color: #ffffff;
+  background: linear-gradient(45deg, #3b82f6, #8b5cf6);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
   box-shadow: 0 3px 8px rgba(0, 0, 0, 0.2);
 }
 
 .btn-primary:hover {
-  background: #355e3b;
   transform: scale(1.05);
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
 }
 
 .btn-secondary {
@@ -150,30 +159,34 @@ export default {
   border-radius: 8px;
   font-size: 1rem;
   font-weight: 600;
-  color: #f5f5f5;
-  background: rgba(74, 112, 67, 0.3);
-  transition: background-color 0.3s ease, box-shadow 0.3s ease;
+  color: #1f2937;
+  background: #e5e7eb;
+  transition: background 0.3s ease, box-shadow 0.3s ease;
   box-shadow: 0 3px 8px rgba(0, 0, 0, 0.2);
 }
 
 .btn-secondary:hover {
-  background: rgba(74, 112, 67, 0.5);
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+  background: #d1d5db;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
 }
 
 .loading-message,
 .error-message {
   text-align: center;
   font-size: 1.2rem;
-  color: #f5f5f5;
+  color: #1f2937;
 }
 
 @media (max-width: 768px) {
+  .app-container {
+    padding: 15px;
+  }
+
   .repair-details {
     padding: 15px;
   }
 
-  .product-image-container .product-image {
+  .product-image {
     max-width: 120px;
     max-height: 120px;
   }

@@ -1,34 +1,32 @@
 <template>
-  <header>
-    <div class="wrapper">
-      <router-view></router-view>
-    </div>
+  <div class="app-wrapper">
     <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@400;700&display=swap" rel="stylesheet">
-  </header>
-  <main>
-    <TheWelcome />
-  </main>
-  <aside class="right-panel">
-    <div class="logo-container">
-      <router-link to="/">
-        <img src="/images/logo.png" alt="Logo" class="logo" />
-      </router-link>
-    </div>
-    <nav class="nav-buttons">
-      <ul class="button-list">
-        <li><router-link to="/" class="button">Главная</router-link></li>
-        <li><router-link to="/about" class="button">О нас</router-link></li>
-        <li><router-link to="/contact" class="button">Контакты</router-link></li>
-        <li v-if="isAuthenticated"><router-link to="/repairs" class="button">Ремонты</router-link></li>
-        <li v-if="isAuthenticated"><router-link to="/clients" class="button">Клиенты</router-link></li>
-        <li v-if="!isAuthenticated"><router-link to="/login" class="button">Войти</router-link></li>
-        <li v-if="!isAuthenticated"><router-link to="/register" class="button">Зарегистрироваться</router-link></li>
-        <li v-if="isAuthenticated" class="welcome-message"><span>Добро пожаловать, {{ username }}</span></li>
-        <li v-if="isAuthenticated"><button @click="logout" class="button">Выйти</button></li>
-        <li v-if="isAuthenticated && role === 'admin'"><a href="http://localhost:3000" class="admin-button">Админ-панель</a></li>
-      </ul>
-    </nav>
-  </aside>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <aside class="right-panel">
+      <div class="logo-container">
+        <router-link to="/">
+          <img src="/images/logo.png" alt="MonitorMaster Logo" class="logo" />
+        </router-link>
+      </div>
+      <nav class="nav-buttons">
+        <ul class="button-list">
+          <li><router-link to="/" class="button">Главная</router-link></li>
+          <li><router-link to="/about" class="button">О нас</router-link></li>
+          <li><router-link to="/contact" class="button">Контакты</router-link></li>
+          <li v-if="isAuthenticated"><router-link to="/repairs" class="button">Ремонты</router-link></li>
+          <li v-if="isAuthenticated"><router-link to="/clients" class="button">Клиенты</router-link></li>
+          <li v-if="!isAuthenticated"><router-link to="/login" class="button">Войти</router-link></li>
+          <li v-if="!isAuthenticated"><router-link to="/register" class="button">Зарегистрироваться</router-link></li>
+          <li v-if="isAuthenticated" class="welcome-message"><span>Добро пожаловать, {{ username }}</span></li>
+          <li v-if="isAuthenticated"><button @click="logout" class="button">Выйти</button></li>
+          <li v-if="isAuthenticated && role === 'admin'"><a href="http://localhost:3000" class="admin-button"><i class="fas fa-lock"></i> Админ-панель</a></li>
+        </ul>
+      </nav>
+    </aside>
+    <main>
+      <router-view></router-view>
+    </main>
+  </div>
 </template>
 
 <script>
@@ -97,25 +95,27 @@ export default {
 </script>
 
 <style scoped>
-/* Боковая панель */
+.app-wrapper {
+  display: flex;
+  min-height: 100vh;
+}
+
 .right-panel {
   position: fixed;
   top: 50%;
   right: 0;
   transform: translateY(-50%);
-  background: linear-gradient(135deg, rgba(60, 47, 47, 0.95), rgba(74, 112, 67, 0.95)); /* Бордово-зеленый градиент */
-  backdrop-filter: blur(10px);
-  border-left: 1px solid rgba(255, 255, 255, 0.2); /* Полупрозрачная белая граница */
+  background: linear-gradient(135deg, #3b82f6, #8b5cf6);
   padding: 20px;
   display: flex;
   flex-direction: column;
   align-items: center;
   gap: 15px;
   border-radius: 10px;
-  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.3);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+  width: 220px;
 }
 
-/* Логотип */
 .logo-container {
   display: flex;
   justify-content: center;
@@ -124,7 +124,7 @@ export default {
 .logo {
   max-width: 100px;
   height: auto;
-  border-radius: 5px;
+  border-radius: 8px;
   transition: transform 0.3s ease;
 }
 
@@ -132,7 +132,6 @@ export default {
   transform: scale(1.05);
 }
 
-/* Список кнопок */
 .button-list {
   list-style-type: none;
   padding: 0;
@@ -143,83 +142,106 @@ export default {
   gap: 10px;
 }
 
-/* Общие стили для кнопок навигации */
 .button {
   display: block;
   width: 180px;
   padding: 10px 15px;
-  background: #722f37; /* Бордовый фон */
-  color: #f5f5f5; /* Светлый текст */
+  background: linear-gradient(45deg, #2563eb, #7c3aed);
+  color: #ffffff;
   text-decoration: none;
   border-radius: 8px;
   font-weight: bold;
   text-align: center;
-  transition: background 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
   box-shadow: 0 3px 8px rgba(0, 0, 0, 0.2);
 }
 
 .button:hover {
-  background: #355e3b; /* Зеленый при наведении */
   transform: translateY(-2px);
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
 }
 
-/* Кнопка админ-панели */
 .admin-button {
-  display: block;
-  width: auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 180px;
   padding: 10px 15px;
-  background: linear-gradient(135deg, #722f37, #355e3b); /* Градиент бордовый-зеленый */
-  color: #f5f5f5;
+  background: linear-gradient(45deg, #ef4444, #f97316);
+  color: #ffffff;
   text-decoration: none;
   border-radius: 8px;
+  font-size: 1.1rem;
   font-weight: bold;
-  text-transform: uppercase;
   text-align: center;
-  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.2);
-  transition: background 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+  border: 2px solid #f97316;
+  box-shadow: 0 0 10px rgba(249, 115, 22, 0.5), 0 3px 8px rgba(0, 0, 0, 0.2);
+  transition: transform 0.3s ease, box-shadow 0.3s ease, background 0.3s ease;
+}
+
+.admin-button i {
+  margin-right: 8px;
 }
 
 .admin-button:hover {
-  background: linear-gradient(135deg, #355e3b, #722f37); /* Обратный градиент при наведении */
-  transform: translateY(-2px);
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+  transform: scale(1.05);
+  background: linear-gradient(45deg, #f97316, #ef4444);
+  box-shadow: 0 0 15px rgba(249, 115, 22, 0.7), 0 4px 12px rgba(0, 0, 0, 0.3);
+  animation: pulse 1.5s infinite;
 }
 
-/* Приветственное сообщение */
 .welcome-message span {
   display: block;
-  width: auto;
+  width: 180px;
   padding: 10px 15px;
   font-size: 16px;
-  color: #f5f5f5; /* Светлый текст */
+  color: #ffffff;
   font-weight: bold;
   text-align: center;
-  background: rgba(60, 47, 47, 0.5); /* Полупрозрачный бордовый фон */
+  background: rgba(59, 130, 246, 0.5);
   border-radius: 8px;
 }
 
-/* Адаптивность */
+main {
+  flex: 1;
+  margin-right: 240px;
+  padding: 20px;
+}
+
+@keyframes pulse {
+  0% {
+    box-shadow: 0 0 10px rgba(249, 115, 22, 0.5), 0 3px 8px rgba(0, 0, 0, 0.2);
+  }
+  50% {
+    box-shadow: 0 0 20px rgba(249, 115, 22, 0.8), 0 3px 8px rgba(0, 0, 0, 0.2);
+  }
+  100% {
+    box-shadow: 0 0 10px rgba(249, 115, 22, 0.5), 0 3px 8px rgba(0, 0, 0, 0.2);
+  }
+}
+
 @media (max-width: 768px) {
   .right-panel {
-    padding: 15px;
     width: 160px;
+    padding: 15px;
   }
 
   .logo {
     max-width: 80px;
   }
 
-  .button {
+  .button, .admin-button, .welcome-message span {
     width: 140px;
     padding: 8px 10px;
     font-size: 0.9rem;
   }
 
-  .admin-button,
-  .welcome-message span {
-    padding: 8px 10px;
-    font-size: 0.9rem;
+  .admin-button {
+    font-size: 1rem;
+  }
+
+  main {
+    margin-right: 180px;
   }
 }
 </style>

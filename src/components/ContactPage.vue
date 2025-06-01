@@ -8,7 +8,7 @@
         <div class="text-block">
           <h2 class="text-2xl font-bold text-center mb-4">О нашем сервисе</h2>
           <p class="fs-5 text-center">
-            Сервис "ХолодМастер" — это профессиональный ремонт холодильников любых марок: Bosch, Samsung, LG, Indesit, Liebherr и других. Мы используем только качественные запчасти и предоставляем гарантию на все работы.
+            Сервис "MonitorMaster" — это профессиональный ремонт и продажа мониторов любых марок: Dell, Samsung, LG, ASUS, Acer и других. Мы используем качественные комплектующие и предоставляем гарантию на все работы и проданные устройства.
           </p>
         </div>
       </div>
@@ -37,15 +37,15 @@
         <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
           <div class="text-center fade-in" :style="{ animationDelay: '0.2s' }">
             <h3 class="text-xl font-bold mb-2">+ Диагностика</h3>
-            <p class="text-gray-600">Бесплатная диагностика неисправностей холодильников.</p>
+            <p class="text-gray-600">Бесплатная диагностика неисправностей мониторов.</p>
           </div>
           <div class="text-center fade-in" :style="{ animationDelay: '0.4s' }">
-            <h3 class="text-xl font-bold mb-2">+ Заправка фреона</h3>
-            <p class="text-gray-600">Профессиональная заправка и устранение утечек хладагента.</p>
+            <h3 class="text-xl font-bold mb-2">+ Замена матрицы</h3>
+            <p class="text-gray-600">Профессиональная замена экранов для всех моделей мониторов.</p>
           </div>
           <div class="text-center fade-in" :style="{ animationDelay: '0.6s' }">
-            <h3 class="text-xl font-bold mb-2">+ Замена компрессора</h3>
-            <p class="text-gray-600">Замена и ремонт компрессоров для всех моделей холодильников.</p>
+            <h3 class="text-xl font-bold mb-2">+ Продажа мониторов</h3>
+            <p class="text-gray-600">Refurbished мониторы с гарантией качества.</p>
           </div>
         </div>
       </div>
@@ -61,33 +61,33 @@ export default {
       employees: [
         {
           name: 'Иванов Алексей Сергеевич',
-          role: 'Ведущий мастер по ремонту холодильников',
-          image: '/images/11.png'
+          role: 'Ведущий мастер по ремонту мониторов',
+          image: '/images/t1.jpg'
         },
         {
           name: 'Ковалёв Сергей Викторович',
-          role: 'Специалист по диагностике',
-          image: '/images/22.png'
+          role: 'Специалист по диагностике мониторов',
+          image: '/images/t2.jpg'
         },
         {
           name: 'Сидоров Дмитрий Иванович',
-          role: 'Техник по ремонту компрессоров',
-          image: '/images/33.png'
+          role: 'Техник по замене матриц',
+          image: '/images/t3.jpg'
         },
         {
           name: 'Козлов Андрей Юрьевич',
-          role: 'Менеджер по работе с клиентами',
-          image: '/images/44.png'
+          role: 'Менеджер по продажам мониторов',
+          image: '/images/t4.png'
         },
         {
           name: 'Морозов Павел Николаевич',
-          role: 'Специалист по заправке фреона',
-          image: '/images/55.png'
+          role: 'Специалист по ремонту плат',
+          image: '/images/t5.jpg'
         },
         {
           name: 'Смирнов Олег Петрович',
           role: 'Администратор сервиса',
-          image: '/images/66.jpeg'
+          image: '/images/t6.png'
         }
       ]
     };
@@ -117,32 +117,26 @@ export default {
 </script>
 
 <style scoped>
-body {
-  background: #e5e7eb;
-  min-height: 100vh;
-  font-family: 'Inter', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-}
-
 .container {
   max-width: 1280px;
   margin-left: auto;
   margin-right: auto;
-  padding-left: 1.5rem;
-  padding-right: 1.5rem;
-  padding-top: 3rem;
-  padding-bottom: 3rem;
+  padding: 3rem 1.5rem;
+  background: linear-gradient(135deg, #f3f4f6, #e5e7eb);
+  border-radius: 12px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
 }
 
 .page-title {
   font-size: 3rem;
   font-weight: 800;
-  color: #1f2937;
   margin-bottom: 2.5rem;
   text-align: center;
-  background: #f3f4f6;
+  background: linear-gradient(45deg, #3b82f6, #8b5cf6);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
   padding: 1.5rem;
   border-radius: 0.75rem;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
 .mb-12 {
@@ -151,18 +145,29 @@ body {
 
 .content-block {
   background: #ffffff;
-  border-radius: 0.75rem;
+  border-radius: 12px;
   padding: 1.5rem;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.content-block:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 6px 25px rgba(0, 0, 0, 0.2);
 }
 
 .text-block {
   padding: 1rem;
+  background: #f9fafb;
+  border-radius: 8px;
 }
 
 .text-2xl {
   font-size: 1.5rem;
   color: #1f2937;
+  background: linear-gradient(45deg, #3b82f6, #8b5cf6);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
 }
 
 .font-bold {
@@ -183,25 +188,32 @@ body {
 
 .fs-5 {
   font-size: 1.25rem;
-  color: #4b5563;
+  color: #1f2937;
 }
 
 .employees-row {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  grid-template-columns: repeat(3, minmax(200px, 1fr));
+  grid-template-rows: auto auto;
   gap: 1.5rem;
+}
+
+@media (max-width: 768px) {
+  .employees-row {
+    grid-template-columns: repeat(1, minmax(200px, 1fr));
+  }
 }
 
 .employee-card {
   background: #ffffff;
-  border-radius: 0.75rem;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  border-radius: 12px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
   transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
 .employee-card:hover {
   transform: translateY(-5px);
-  box-shadow: 0 8px 12px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
 }
 
 .card {
@@ -213,8 +225,9 @@ body {
   width: 100%;
   height: 12rem;
   object-fit: cover;
-  border-radius: 0.5rem;
-  border: 1px solid #e5e7eb;
+  border-radius: 8px;
+  border: 2px solid #3b82f6;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
 }
 
 .card-body {
@@ -231,7 +244,7 @@ body {
 
 .card-text {
   font-size: 0.875rem;
-  color: #4b5563;
+  color: #1f2937;
 }
 
 .grid {
@@ -262,7 +275,7 @@ body {
 }
 
 .text-gray-600 {
-  color: #4b5563;
+  color: #1f2937;
 }
 
 .fade-in {

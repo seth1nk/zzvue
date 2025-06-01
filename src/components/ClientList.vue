@@ -107,43 +107,25 @@ export default {
 </script>
 
 <style scoped>
-/* Основной контейнер */
 .app-container {
   max-width: 1400px;
   margin: 0 auto;
   padding: 20px;
   font-family: 'Roboto', sans-serif;
+  background: #ffffff;
+  border-radius: 12px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
 }
 
-/* Кнопка "Добавить клиента" */
-.btn-primary {
-  display: inline-block;
-  padding: 10px 20px;
-  border-radius: 8px;
-  font-size: 1rem;
-  font-weight: 600;
-  color: #f5f5f5;
-  background: #722f37;
-  transition: transform 0.3s ease, background 0.3s ease, box-shadow 0.3s ease;
-  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.2);
-}
-
-.btn-primary:hover {
-  background: #355e3b;
-  transform: scale(1.05);
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
-}
-
-/* Настройка таблицы */
 .table-container {
   width: 100%;
   max-width: 1400px;
   margin: 0 auto;
   overflow-x: auto;
-  background: rgba(60, 47, 47, 0.9);
+  background: #ffffff;
   border-radius: 12px;
-  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.3);
   padding: 15px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
 }
 
 .styled-table.clients-table {
@@ -160,17 +142,14 @@ export default {
   padding: 14px 10px;
   text-align: center;
   vertical-align: middle;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.2);
-  border-right: 1px solid rgba(255, 255, 255, 0.2);
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  color: #f5f5f5;
+  border-bottom: 1px solid #e5e7eb;
+  border-right: 1px solid #e5e7eb;
+  color: #1f2937;
 }
 
 .styled-table.clients-table th {
-  background: rgba(74, 112, 67, 0.7);
-  color: #f5f5f5;
+  background: linear-gradient(45deg, #3b82f6, #8b5cf6);
+  color: #ffffff;
   font-weight: 600;
   text-transform: uppercase;
   letter-spacing: 0.5px;
@@ -186,87 +165,37 @@ export default {
   border-bottom: none;
 }
 
-.styled-table.clients-table th:nth-child(8) {
-  line-height: 1.2;
-  padding: 10px 5px;
-}
-
-.styled-table.clients-table tbody tr:nth-child(even) {
-  background: rgba(74, 112, 67, 0.1);
-}
-
 .styled-table.clients-table tbody tr:hover {
-  background: rgba(255, 255, 255, 0.1);
-  transition: background 0.3s ease;
+  background: #f3f4f6;
 }
 
-/* Настройка ширины столбцов */
 .clients-table th:nth-child(1),
-.clients-table td:nth-child(1) { /* ID */
-  width: 5%;
-  min-width: 40px;
-}
+.clients-table td:nth-child(1) { width: 5%; min-width: 40px; }
 .clients-table th:nth-child(2),
-.clients-table td:nth-child(2) { /* Имя */
-  width: 10%;
-  min-width: 100px;
-}
+.clients-table td:nth-child(2) { width: 10%; min-width: 100px; }
 .clients-table th:nth-child(3),
-.clients-table td:nth-child(3) { /* Фамилия */
-  width: 10%;
-  min-width: 100px;
-}
+.clients-table td:nth-child(3) { width: 10%; min-width: 100px; }
 .clients-table th:nth-child(4),
-.clients-table td:nth-child(4) { /* Телефон */
-  width: 10%;
-  min-width: 100px;
-}
+.clients-table td:nth-child(4) { width: 10%; min-width: 100px; }
 .clients-table th:nth-child(5),
-.clients-table td:nth-child(5) { /* Email */
-  width: 12%;
-  min-width: 120px;
-  white-space: normal;
-  word-break: break-word;
-}
+.clients-table td:nth-child(5) { width: 12%; min-width: 120px; white-space: normal; word-break: break-word; }
 .clients-table th:nth-child(6),
-.clients-table td:nth-child(6) { /* Адрес */
-  width: 15%;
-  min-width: 120px;
-  white-space: normal;
-  word-break: break-word;
-}
+.clients-table td:nth-child(6) { width: 15%; min-width: 120px; white-space: normal; word-break: break-word; }
 .clients-table th:nth-child(7),
-.clients-table td:nth-child(7) { /* Заметки */
-  width: 13%;
-  min-width: 120px;
-  white-space: normal;
-  word-break: break-word;
-}
+.clients-table td:nth-child(7) { width: 13%; min-width: 120px; white-space: normal; word-break: break-word; }
 .clients-table th:nth-child(8),
-.clients-table td:nth-child(8) { /* Предпочитаемый способ связи */
-  width: 12%;
-  min-width: 100px;
-  white-space: normal;
-  word-break: break-word;
-}
+.clients-table td:nth-child(8) { width: 12%; min-width: 100px; white-space: normal; word-break: break-word; }
 .clients-table th:nth-child(9),
-.clients-table td:nth-child(9) { /* Фото */
-  width: 5%;
-  min-width: 60px;
-}
+.clients-table td:nth-child(9) { width: 5%; min-width: 60px; }
 .clients-table th:nth-child(10),
-.clients-table td:nth-child(10) { /* Действия */
-  width: 5%;
-  min-width: 40px;
-}
+.clients-table td:nth-child(10) { width: 5%; min-width: 40px; }
 
 .product-image {
   max-width: 60px;
   max-height: 60px;
   border-radius: 8px;
   object-fit: cover;
-  vertical-align: middle;
-  border: 2px solid #e8b923;
+  border: 2px solid #3b82f6;
   box-shadow: 0 3px 6px rgba(0, 0, 0, 0.2);
 }
 
@@ -274,10 +203,9 @@ export default {
   text-align: center;
   font-size: 1.2rem;
   padding: 20px;
-  color: #f5f5f5;
+  color: #1f2937;
 }
 
-/* Пагинация */
 .pagination {
   display: flex;
   justify-content: center;
@@ -292,30 +220,28 @@ export default {
   border-radius: 8px;
   font-size: 1rem;
   font-weight: 600;
-  color: #f5f5f5;
-  background: #722f37;
-  transition: transform 0.3s ease, background 0.3s ease, box-shadow 0.3s ease;
+  color: #ffffff;
+  background: linear-gradient(45deg, #3b82f6, #8b5cf6);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
   box-shadow: 0 3px 8px rgba(0, 0, 0, 0.2);
 }
 
 .pagination button:disabled {
-  background: #4a4a4a;
+  background: #6b7280;
   cursor: not-allowed;
   box-shadow: none;
 }
 
 .pagination button:hover:not(:disabled) {
-  background: #355e3b;
   transform: scale(1.05);
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
 }
 
 .pagination span {
-  color: #f5f5f5;
+  color: #1f2937;
   font-weight: 600;
 }
 
-/* Действия */
 .action-buttons {
   display: flex;
   gap: 8px;
@@ -329,31 +255,25 @@ export default {
   width: 36px;
   height: 36px;
   border-radius: 50%;
-  background: #722f37;
-  color: #f5f5f5;
+  background: linear-gradient(45deg, #3b82f6, #8b5cf6);
+  color: #ffffff;
   font-size: 1rem;
-  transition: transform 0.3s ease, background 0.3s ease, box-shadow 0.3s ease;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
 }
 
 .action-btn:hover {
-  background: #355e3b;
   transform: scale(1.1);
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
 }
 
 .view-icon:hover {
-  background: #e8b923;
+  background: linear-gradient(45deg, #2563eb, #7c3aed);
 }
 
-/* Адаптивность */
 @media (max-width: 768px) {
   .app-container {
     padding: 15px;
-  }
-
-  .page-title {
-    font-size: 1.5rem;
   }
 
   .table-container {
@@ -364,11 +284,6 @@ export default {
   .styled-table.clients-table td {
     padding: 8px;
     font-size: 0.9rem;
-  }
-
-  .clients-table th,
-  .clients-table td {
-    min-width: 40px;
   }
 
   .product-image {
